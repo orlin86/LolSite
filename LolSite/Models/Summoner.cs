@@ -15,6 +15,7 @@ namespace LolSite.Models
 
         public string Server { get; set; }
 
+        [Key]
         public long SummonerID { get; set; }
 
         public int ProfileIconID { get; set; }

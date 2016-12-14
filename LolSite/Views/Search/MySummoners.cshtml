@@ -1,0 +1,31 @@
+﻿@model List<LolSite.Models.Summoner>
+
+@{
+    ViewBag.Title = "MySummoners";
+}
+
+<div class="container">
+    <div class="row">
+        @foreach (var summoner in Model)
+        {
+            <div class="col-sm-6">
+                <article>
+                    <header>
+                        <h2>
+                            <img src="@(String.Format("http://ddragon.leagueoflegends.com/cdn/6.5.1/img/profileicon/{0}.png", summoner.ProfileIconID))" alt="image"/>
+                            <div>
+                                @Html.ActionLink(@summoner.SummonerName, "Summoners", "Details", new { @id = summoner.SummonerID }, null)
+                                <div>
+                                    Server: @summoner.Server.ToUpper()
+                                </div>
+                            </div>
+                        </h2>
+                    </header>
+                </article>
+            </div>
+        }
+    </div>
+</div>
+<hr />
+
+

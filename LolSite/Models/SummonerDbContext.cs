@@ -13,6 +13,8 @@ namespace LolSite.Models
         {
         }
 
+        public virtual IDbSet<Summoner> Summoners { get; set; }
+
         public static SumonnerDbContext Create()
         {
             return new SumonnerDbContext();

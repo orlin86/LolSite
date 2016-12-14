@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -240,6 +241,19 @@ $"https://{server}.api.pvp.net/api/lol/{server}/v1.4/summoner/by-name/{champName
 
             ViewBag.Servers = tempList;
             return View();
+        }
+
+        // GET: MySummoners
+        public ActionResult MySummoners()
+        {
+            using (var database = new SumonnerDbContext())
+            {
+                //Get saved summoners from the database
+                var summoners = database.Summoners
+                    .ToList();
+
+                return View(summoners);
+            }
         }
     }
 }
