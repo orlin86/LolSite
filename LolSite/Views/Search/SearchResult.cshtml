@@ -1,0 +1,18 @@
+﻿@model LolSite.Models.Summoner
+   
+@{
+    ViewBag.Title = "HeroStats";
+}
+
+<h2>HeroStats</h2>
+
+<div class="container"> 
+    <div class="well">
+        <img src=@ViewBag.ImgSrc alt="image" />
+        @foreach (KeyValuePair<string, string>
+            kvp in ViewBag.Data)
+        {
+            <h3>@kvp.Key: @kvp.Value</h3>
+        }
+    </div>
+</div>
