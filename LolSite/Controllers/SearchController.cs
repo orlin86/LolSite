@@ -18,8 +18,8 @@ namespace LolSite.Controllers
 
 
         //
-        // GET: Summoner
-        public ActionResult Index()
+        // GET: SearchPage
+        public ActionResult SearchPage()
         {
                 List<SelectListItem> tempList = new List<SelectListItem>();
                 tempList.Add(new SelectListItem
@@ -79,7 +79,7 @@ namespace LolSite.Controllers
         }
 
         //
-        // POST: Summoner
+        // POST: SearchPage
         [HttpPost]
         public ActionResult SearchResult(Summoner summoner)
         {
@@ -170,19 +170,19 @@ $"https://{server}.api.pvp.net/api/lol/{server}/v1.4/summoner/by-name/{champName
             }
             else
             {
-                return Redirect("/Summoner/NoChampFound");
+                return Redirect("/Search/NoSummonerFound");
             }
         }
 
         //
-        // GET: Summoner/SearchResult
+        // GET: SearchResult
         public ActionResult SearchResult()
         {
             return Redirect("/");
         }
 
         //
-        // GET: Summoner/NoChampFound
+        // GET: NoSummonerFound
         public ActionResult NoChampFound()
         {
             List<SelectListItem> tempList = new List<SelectListItem>();

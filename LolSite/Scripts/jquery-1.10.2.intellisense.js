@@ -192,7 +192,7 @@ intellisense.annotate(jQuery, {
   },
   'inArray': function() {
     /// <signature>
-    ///   <summary>Summoner for a specified value within an array and return its index (or -1 if not found).</summary>
+    ///   <summary>SummonerName for a specified value within an array and return its index (or -1 if not found).</summary>
     ///   <param name="value" type="Anything">The value to summoner for.</param>
     ///   <param name="array" type="Array">An array through which to summoner.</param>
     ///   <param name="fromIndex" type="Number">The index of the array at which to begin the summoner. The default is 0, which will summoner the whole array.</param>
@@ -1536,12 +1536,12 @@ intellisense.annotate(jQuery.fn, {
   },
   'index': function() {
     /// <signature>
-    ///   <summary>Summoner for a given element from among the matched elements.</summary>
+    ///   <summary>SummonerName for a given element from among the matched elements.</summary>
     ///   <param name="selector" type="String">A selector representing a jQuery collection in which to look for an element.</param>
     ///   <returns type="Number" />
     /// </signature>
     /// <signature>
-    ///   <summary>Summoner for a given element from among the matched elements.</summary>
+    ///   <summary>SummonerName for a given element from among the matched elements.</summary>
     ///   <param name="element" type="jQuery">The DOM element or first element within the jQuery object to look for.</param>
     ///   <returns type="Number" />
     /// </signature>

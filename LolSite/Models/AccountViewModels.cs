@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Owin.Security.Provider;
 
 namespace LolSite.Models
 {
@@ -69,10 +70,6 @@ namespace LolSite.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [StringLength(15, ErrorMessage = "SummonerName name can be 15 chars max!")]
-        [Display(Name = "SummonerName")]
-        public string Summoner { get; set; }
-
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 5)]
         [DataType(DataType.Password)]
@@ -83,6 +80,8 @@ namespace LolSite.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+       
     }
 
     public class ResetPasswordViewModel
