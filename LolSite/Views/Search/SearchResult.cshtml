@@ -1,18 +1,27 @@
-﻿@model LolSite.Models.Summoner
-   
+﻿@using LolSite.Models
+@model LolSite.Models.Summoner
+
 @{
     ViewBag.Title = "HeroStats";
 }
 
 <h2>HeroStats</h2>
 
-<div class="container"> 
+<div class="container">
     <div class="well">
+
         <img src=@ViewBag.ImgSrc alt="image" />
         @foreach (KeyValuePair<string, string>
-            kvp in ViewBag.Data)
-        {
+            kvp in Model.Dic)
+            {
             <h3>@kvp.Key: @kvp.Value</h3>
-        }
+            }
+
+            @using (Html.BeginForm("AddSummoner", "Search", this.Model, FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                <div>
+                    <input type="submit" value="Add Summoner" class="btn btn-success" />
+                </div>
+            }
     </div>
 </div>

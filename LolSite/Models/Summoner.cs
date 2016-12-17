@@ -10,6 +10,8 @@ namespace LolSite.Models
 {
     public class Summoner
     {
+        public Dictionary<string, string > Dic { get; set; }
+
         [StringLength(50)]
         public string SummonerName { get; set; }
 

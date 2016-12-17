@@ -22,58 +22,64 @@ namespace LolSite.Controllers
         // GET: SearchPage
         public ActionResult SearchPage()
         {
-                List<SelectListItem> tempList = new List<SelectListItem>();
-                tempList.Add(new SelectListItem
-                {
-                    Text = "EUNE",
-                    Value = "Europe North and East",
-                    Selected = true
+            List<SelectListItem> tempList = new List<SelectListItem>();
+            tempList.Add(new SelectListItem
+            {
+                Text = "EUNE",
+                Value = "Europe North and East",
+                Selected = true
 
-                });
-                tempList.Add(new SelectListItem
-                {
-                    Text = "EUW",
-                    Value = "Western Europe",
-                });
-                tempList.Add(new SelectListItem
-                {
-                    Text = "BR",
-                    Value = "Brasil"
-                });
-                tempList.Add(new SelectListItem
-                {
-                    Text = "JP",
-                    Value = "Japan"
-                }); tempList.Add(new SelectListItem
-                {
-                    Text = "KR",
-                    Value = "Korea"
-                }); tempList.Add(new SelectListItem
-                {
-                    Text = "LAN",
-                    Value = "Latin America North "
-                }); tempList.Add(new SelectListItem
-                {
-                    Text = "LAS",
-                    Value = "Latin America South"
-                }); tempList.Add(new SelectListItem
-                {
-                    Text = "NA",
-                    Value = "North America"
-                }); tempList.Add(new SelectListItem
-                {
-                    Text = "OCE",
-                    Value = "Oceania"
-                }); tempList.Add(new SelectListItem
-                {
-                    Text = "RU",
-                    Value = "Russia"
-                });
-                tempList.Add(new SelectListItem
-                {
-                    Text = "TR",
-                    Value = "Turkey"
-                });
+            });
+            tempList.Add(new SelectListItem
+            {
+                Text = "EUW",
+                Value = "Western Europe",
+            });
+            tempList.Add(new SelectListItem
+            {
+                Text = "BR",
+                Value = "Brasil"
+            });
+            tempList.Add(new SelectListItem
+            {
+                Text = "JP",
+                Value = "Japan"
+            });
+            tempList.Add(new SelectListItem
+            {
+                Text = "KR",
+                Value = "Korea"
+            });
+            tempList.Add(new SelectListItem
+            {
+                Text = "LAN",
+                Value = "Latin America North "
+            });
+            tempList.Add(new SelectListItem
+            {
+                Text = "LAS",
+                Value = "Latin America South"
+            });
+            tempList.Add(new SelectListItem
+            {
+                Text = "NA",
+                Value = "North America"
+            });
+            tempList.Add(new SelectListItem
+            {
+                Text = "OCE",
+                Value = "Oceania"
+            });
+            tempList.Add(new SelectListItem
+            {
+                Text = "RU",
+                Value = "Russia"
+            });
+            tempList.Add(new SelectListItem
+            {
+                Text = "TR",
+                Value = "Turkey"
+            });
 
             ViewBag.Servers = tempList;
             return View();
@@ -90,7 +96,7 @@ namespace LolSite.Controllers
             string output = "";
             string apiKey = "?api_key=RGAPI-83bc4cd9-c0d4-4fa3-a0a9-775ea5edc1e1";
             string Url =
-$"https://{server}.api.pvp.net/api/lol/{server}/v1.4/summoner/by-name/{champName}{apiKey}";
+                $"https://{server}.api.pvp.net/api/lol/{server}/v1.4/summoner/by-name/{champName}{apiKey}";
 
             bool hasRes = false;
 
@@ -123,7 +129,7 @@ $"https://{server}.api.pvp.net/api/lol/{server}/v1.4/summoner/by-name/{champName
                     string username = splitNameBody[0];
                     string bodyTemp = splitNameBody[1];
                     string[] bodyArgs = bodyTemp
-                        .Split(new[] { ',', ':' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Split(new[] {',', ':'}, StringSplitOptions.RemoveEmptyEntries)
                         .Where(x => !string.IsNullOrWhiteSpace(x))
                         .Select(s => s.Trim())
                         .Select(s => s.Trim('"', '}'))
@@ -153,19 +159,35 @@ $"https://{server}.api.pvp.net/api/lol/{server}/v1.4/summoner/by-name/{champName
 
                     // UrlForImg
                     string imgUrl = "http://ddragon.leagueoflegends.com/cdn/6.5.1/img/profileicon/";
+                    int imgNum = 0;
                     foreach (var kvp in dic)
                     {
                         if (kvp.Key == "profileIconId")
                         {
                             imgUrl += kvp.Value + ".png";
+                            imgNum += int.Parse(kvp.Value);
+                        }
+                    }
+
+                    long sumonID = 0;
+                    foreach (var kvp in dic)
+                    {
+                        if (kvp.Key == "SummonerID")
+                        {
+                            sumonID += long.Parse(kvp.Value);
                         }
                     }
 
 
                     // Output
+                    summoner.Dic = dic;
+                    summoner.ProfileIconID = imgNum;
+                    summoner.SummonerID = sumonID;
+
                     ViewBag.ImgSrc = imgUrl;
                     ViewBag.Username = username + ":";
                     ViewBag.Data = dic;
+
                 }
                 return View(summoner);
             }
@@ -177,9 +199,27 @@ $"https://{server}.api.pvp.net/api/lol/{server}/v1.4/summoner/by-name/{champName
 
         //
         // GET: SearchResult
-        public ActionResult SearchResult()
+        public ActionResult SearchResults(Summoner summoner)
         {
-            return Redirect("/");
+            return View(summoner);
+        }
+
+        //
+        // POST: SearchResult
+        [HttpPost]
+        public ActionResult AddSummoner(Summoner summoner, Dictionary<string, string> dic)
+        {
+            //Summoner summoner = new Summoner();
+
+            //Dictionary<string, string> a = dic;
+            using (var database = new SumonnerDbContext())
+            {
+                database.Summoners.Add(summoner);
+                database.SaveChanges();
+            }
+
+
+            return Redirect("/Search/MySummoners");
         }
 
         //
@@ -208,27 +248,33 @@ $"https://{server}.api.pvp.net/api/lol/{server}/v1.4/summoner/by-name/{champName
             {
                 Text = "JP",
                 Value = "Japan"
-            }); tempList.Add(new SelectListItem
+            });
+            tempList.Add(new SelectListItem
             {
                 Text = "KR",
                 Value = "Korea"
-            }); tempList.Add(new SelectListItem
+            });
+            tempList.Add(new SelectListItem
             {
                 Text = "LAN",
                 Value = "Latin America North "
-            }); tempList.Add(new SelectListItem
+            });
+            tempList.Add(new SelectListItem
             {
                 Text = "LAS",
                 Value = "Latin America South"
-            }); tempList.Add(new SelectListItem
+            });
+            tempList.Add(new SelectListItem
             {
                 Text = "NA",
                 Value = "North America"
-            }); tempList.Add(new SelectListItem
+            });
+            tempList.Add(new SelectListItem
             {
                 Text = "OCE",
                 Value = "Oceania"
-            }); tempList.Add(new SelectListItem
+            });
+            tempList.Add(new SelectListItem
             {
                 Text = "RU",
                 Value = "Russia"
