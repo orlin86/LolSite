@@ -12,16 +12,20 @@
 
         <img src=@ViewBag.ImgSrc alt="image" />
         @foreach (KeyValuePair<string, string>
-            kvp in Model.Dic)
-            {
+                kvp in ViewBag.Data)
+        {
             <h3>@kvp.Key: @kvp.Value</h3>
-            }
+        }
 
-            @using (Html.BeginForm("AddSummoner", "Search", this.Model, FormMethod.Post, new { @class = "form-horizontal" }))
+        @if (User.Identity.IsAuthenticated)
+        {
+            using (Html.BeginForm("AddSummoner", "Search", this.Model, FormMethod.Post, new { @class = "form-horizontal" }))
             {
                 <div>
                     <input type="submit" value="Add Summoner" class="btn btn-success" />
                 </div>
             }
+        }
+        else {}
     </div>
 </div>

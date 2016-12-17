@@ -180,7 +180,6 @@ namespace LolSite.Controllers
 
 
                     // Output
-                    summoner.Dic = dic;
                     summoner.ProfileIconID = imgNum;
                     summoner.SummonerID = sumonID;
 
@@ -207,19 +206,30 @@ namespace LolSite.Controllers
         //
         // POST: SearchResult
         [HttpPost]
-        public ActionResult AddSummoner(Summoner summoner, Dictionary<string, string> dic)
+        public ActionResult AddSummoner(Summoner summoner)
         {
-            //Summoner summoner = new Summoner();
 
-            //Dictionary<string, string> a = dic;
-            using (var database = new SumonnerDbContext())
+            if (ModelState.IsValid)
             {
-                database.Summoners.Add(summoner);
-                database.SaveChanges();
+                using (var database = new SumonnerDbContext())
+                {
+                    // Get ownerId
+                    var ownerId = database.Users
+                        .Where(u => u.UserName == this.User.Identity.Name)
+                        .First()
+                        .Id;
+
+                    // Set ownerId
+                    summoner.OwnerId = ownerId;
+
+                    database.Summoners.Add(summoner);
+                    database.SaveChanges();
+
+                    return Redirect("/Search/MySummoners");
+
+                }
             }
-
-
-            return Redirect("/Search/MySummoners");
+            return View(summoner);
         }
 
         //
@@ -294,8 +304,14 @@ namespace LolSite.Controllers
         {
             using (var database = new SumonnerDbContext())
             {
+                //Get this.User Id
+                var userId = database.Users
+                    .Where(u => u.UserName == this.User.Identity.Name)
+                    .First().Id;
+
                 //Get saved summoners from the database
                 var summoners = database.Summoners
+                    .Where(u => u.OwnerId == userId)
                     .ToList();
 
                 return View(summoners);
