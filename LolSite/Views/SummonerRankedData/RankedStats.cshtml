@@ -1,0 +1,41 @@
+﻿@using LolSite.Models
+
+@{
+    ViewBag.Title = "RankedStats";
+}
+
+<h2>RankedStats</h2>
+
+<table>
+    <tr>
+        <td>ID</td>
+        @foreach (var stat in ViewBag.Data[0].stats.GetType().GetProperties())
+        {
+            <td>
+                @stat.Name
+            </td>
+        }
+    </tr>
+    
+    @foreach (var champ in ViewBag.Data)
+    {
+        <tr>
+            <td>
+                @if (champ.champName != null) { 
+                <img src="@champ.champName" alt="image"/>
+                }
+                else
+                {
+                    <img src="http://www.clker.com/cliparts/w/Z/C/s/n/T/total-button-png-md.png" alt="image" style="width: 120px"/>
+                }
+            </td>
+
+            @foreach (var stat in champ.stats.GetType().GetProperties())
+            {
+                <td align="center">@stat.GetValue(champ.stats, null)</td>
+
+            }
+
+        </tr>
+    }
+</table>

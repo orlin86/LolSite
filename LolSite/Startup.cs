@@ -4,7 +4,6 @@ using System.Data.Entity;
 using Microsoft.Owin;
 using Owin;
 
-
 [assembly: OwinStartupAttribute(typeof(LolSite.Startup))]
 namespace LolSite
 {
@@ -13,6 +12,7 @@ namespace LolSite
         public void Configuration(IAppBuilder app)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<SumonnerDbContext, Configuration>());
+
 
             ConfigureAuth(app);
         }

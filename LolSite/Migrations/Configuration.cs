@@ -11,7 +11,6 @@ namespace LolSite.Migrations
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
-            ContextKey = "LolSite.Models.SumonnerDbContext";
         }
 
         protected override void Seed(LolSite.Models.SumonnerDbContext context)

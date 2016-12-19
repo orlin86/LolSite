@@ -129,7 +129,7 @@ namespace LolSite.Controllers
                     string username = splitNameBody[0];
                     string bodyTemp = splitNameBody[1];
                     string[] bodyArgs = bodyTemp
-                        .Split(new[] {',', ':'}, StringSplitOptions.RemoveEmptyEntries)
+                        .Split(new[] { ',', ':' }, StringSplitOptions.RemoveEmptyEntries)
                         .Where(x => !string.IsNullOrWhiteSpace(x))
                         .Select(s => s.Trim())
                         .Select(s => s.Trim('"', '}'))
@@ -172,7 +172,7 @@ namespace LolSite.Controllers
                     long sumonID = 0;
                     foreach (var kvp in dic)
                     {
-                        if (kvp.Key == "SummonerID")
+                        if (kvp.Key == "id")
                         {
                             sumonID += long.Parse(kvp.Value);
                         }
@@ -230,6 +230,25 @@ namespace LolSite.Controllers
                 }
             }
             return View(summoner);
+        }
+
+        //
+        // POST: MySummoners
+        public ActionResult DeleteSummoner(Summoner summoner)
+        {
+
+            using (var database = new SumonnerDbContext())
+            {
+                var summonerToDel = database.Summoners
+                    .Where(u => u.SummonerName == summoner.SummonerName)
+                    .First();
+
+                database.Summoners.Remove(summonerToDel);
+                database.SaveChanges();
+
+                return Redirect("/Search/MySummoners");
+            }
+
         }
 
         //
@@ -317,5 +336,7 @@ namespace LolSite.Controllers
                 return View(summoners);
             }
         }
+
+
     }
 }

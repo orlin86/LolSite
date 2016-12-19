@@ -1,4 +1,5 @@
-﻿@model List<LolSite.Models.Summoner>
+﻿@using LolSite.Models
+@model List<LolSite.Models.Summoner>
 
 @{
     ViewBag.Title = "MySummoners";
@@ -8,17 +9,27 @@
     <div class="row">
         @foreach (var summoner in Model)
         {
-            <div class="col-sm-6">
+            <div class="col-sm-6" style="width: 33%">
                 <article>
                     <header>
                         <h2>
-                            <img src="@(String.Format("http://ddragon.leagueoflegends.com/cdn/6.5.1/img/profileicon/{0}.png", summoner.ProfileIconID))" alt="image"/>
+                            <img src="@(String.Format("http://ddragon.leagueoflegends.com/cdn/6.5.1/img/profileicon/{0}.png", summoner.ProfileIconID))" alt="image" />
                             <div>
-                                @Html.ActionLink(@summoner.SummonerName, "Summoners", "Details", new { @id = summoner.SummonerID }, null)
+                                Name: @summoner.SummonerName
                                 <div>
                                     Server: @summoner.Server.ToUpper()
                                 </div>
+                                <div>
+                                    @Html.ActionLink("Ranked Stats", "RankedStats", "SummonerRankedData", summoner, new {@class = "btn btn-success"})
+                                    @Html.ActionLink("Champion Mastery", "ChampionMastery", "SummonerRankedData", summoner, new { @class = "btn btn-success" })
+                                </div>
+                                <div>
+                                    @Html.ActionLink("Summary", "Summary", "SummonerRankedData", this.Model, new { @class = "btn btn-success" })
+                                    @Html.ActionLink("Delete Summoner", "DeleteSummoner", "Search", summoner, new {@class = "btn btn-success"})
+                                </div>
                             </div>
+
+
                         </h2>
                     </header>
                 </article>

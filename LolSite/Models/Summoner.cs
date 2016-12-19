@@ -11,13 +11,14 @@ namespace LolSite.Models
 {
     public class Summoner
     {
+        [Key]
+        public int Nums { get; set; }
 
         [StringLength(50)]
         public string SummonerName { get; set; }
 
         public string Server { get; set; }
 
-        [Key]
         public long SummonerID { get; set; }
 
         public int ProfileIconID { get; set; }
@@ -29,6 +30,7 @@ namespace LolSite.Models
 
     }
 }
+
 
 
 

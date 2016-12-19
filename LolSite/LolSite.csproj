@@ -176,6 +176,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\SummonerRankedDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -185,10 +186,12 @@
     <Compile Include="Models\SummonerDbContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Summoner.cs" />
+    <Compile Include="Models\SummonerRankedData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ChampIdsToNames.txt" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -245,6 +248,8 @@
     <Content Include="Views\Search\SearchResult.cshtml" />
     <Content Include="Views\Search\NoSummonerFound.cshtml" />
     <Content Include="Views\Search\MySummoners.cshtml" />
+    <Content Include="Views\SummonerRankedData\RankedStats.cshtml" />
+    <Content Include="Views\SummonerRankedData\Summary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
