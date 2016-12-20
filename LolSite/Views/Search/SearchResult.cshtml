@@ -16,14 +16,23 @@
         {
             <h3>@kvp.Key: @kvp.Value</h3>
         }
+        
+        
 
         @if (User.Identity.IsAuthenticated)
         {
-            using (Html.BeginForm("AddSummoner", "Search", this.Model, FormMethod.Post, new { @class = "form-horizontal" }))
+            if (ViewBag.sumEx)
             {
-                <div>
-                    <input type="submit" value="Add Summoner" class="btn btn-success" />
-                </div>
+                <h3 style="color: forestgreen">Summoner already exists in your list of summoners!</h3>
+            }
+            else
+            {
+                using (Html.BeginForm("AddSummoner", "Search", this.Model, FormMethod.Post, new {@class = "form-horizontal"}))
+                {
+                    <div>
+                        <input type="submit" value="Add Summoner" class="btn btn-success"/>
+                    </div>
+                }
             }
         }
         else {}

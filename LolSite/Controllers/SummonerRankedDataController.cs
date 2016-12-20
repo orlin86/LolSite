@@ -64,7 +64,7 @@ namespace LolSite.Controllers
             }
             else
             {
-                return Redirect("/Search/MySummoners");
+                return Redirect("/SummonerRankedData/NoRankedStats");
             }
 
         }
@@ -79,6 +79,13 @@ namespace LolSite.Controllers
         public ActionResult ChampionMastery(Summoner summoner)
         {
 
+            return View();
+        }
+
+        //
+        // Get: NoRankedStats
+        public ActionResult NoRankedStats()
+        {
             return View();
         }
     }

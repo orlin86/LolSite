@@ -178,6 +178,12 @@ namespace LolSite.Controllers
                         }
                     }
 
+                    using (var database = new SumonnerDbContext())
+                    {
+                        bool summExist = database.Summoners.Any(t=>t.SummonerID == sumonID);
+                        ViewBag.sumEx = summExist;
+                    }
+
 
                     // Output
                     summoner.ProfileIconID = imgNum;
