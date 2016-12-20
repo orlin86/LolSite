@@ -68,21 +68,7 @@ namespace LolSite.Controllers
             }
 
         }
-
-        public ActionResult Summary(Summoner summoner)
-        {
-
-            return View();
-        }
-
-
-        public ActionResult ChampionMastery(Summoner summoner)
-        {
-
-            return View();
-        }
-
-        //
+     
         // Get: NoRankedStats
         public ActionResult NoRankedStats()
         {

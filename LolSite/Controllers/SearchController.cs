@@ -259,7 +259,7 @@ namespace LolSite.Controllers
 
         //
         // GET: NoSummonerFound
-        public ActionResult NoChampFound()
+        public ActionResult NoSummonerFound()
         {
             List<SelectListItem> tempList = new List<SelectListItem>();
             tempList.Add(new SelectListItem

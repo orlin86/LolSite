@@ -1,0 +1,32 @@
+﻿@functions {
+    private DateTime FromUnixTime(long unixTime)
+    {
+        var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        return epoch.AddMilliseconds(unixTime);
+    }
+}
+
+@{
+    ViewBag.Title = "Summoner Summary";
+}
+
+<h2>Summoner Summary</h2>
+
+<table>
+    @foreach (var stat in ViewBag.Data)
+    {
+        <tr style="font-size: larger">
+            <td>Summary Type</td>
+            <td>Modify Date</td>
+            <td>Wins</td>
+            <td>Losses</td>
+        </tr>
+        <tr>
+            <td>@stat.playerStatSummaryType</td>
+            <td>@FromUnixTime(stat.modifyDate)</td>
+            <td>@stat.wins</td>
+            <td>@stat.losses</td>
+        </tr>
+    }
+
+</table>

@@ -24,12 +24,10 @@
                                     @Html.ActionLink("Champion Mastery", "ChampionMastery", "SummonerRankedData", summoner, new { @class = "btn btn-success" })
                                 </div>
                                 <div>
-                                    @Html.ActionLink("Summary", "Summary", "SummonerRankedData", this.Model, new { @class = "btn btn-success" })
+                                    @Html.ActionLink("Summary", "Summary", "SummonerSummary", summoner, new { @class = "btn btn-success" })
                                     @Html.ActionLink("Delete Summoner", "DeleteSummoner", "Search", summoner, new {@class = "btn btn-success"})
                                 </div>
                             </div>
-
-
                         </h2>
                     </header>
                 </article>
