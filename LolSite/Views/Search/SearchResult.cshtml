@@ -10,7 +10,7 @@
 <div class="container">
     <div class="well">
 
-        <img src=@ViewBag.ImgSrc alt="image" />
+        <img src=@ViewBag.ImgSrc alt="image" width="128" onError="this.src = 'http://www.tongtai.com.tw/includes/js/noimg.gif'"/>
         @foreach (KeyValuePair<string, string>
                 kvp in ViewBag.Data)
         {

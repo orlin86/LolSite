@@ -10,28 +10,45 @@
         @foreach (var summoner in Model)
         {
             <div class="col-sm-6" style="width: 33%">
-                <article>
-                    <header>
-                        <h2>
-                            <img src="@(String.Format("http://ddragon.leagueoflegends.com/cdn/6.5.1/img/profileicon/{0}.png", summoner.ProfileIconID))" alt="image" />
-                            <div>
-                                Name: @summoner.SummonerName
-                                <div>
-                                    Server: @summoner.Server.ToUpper()
-                                </div>
-                                <div>
-                                    @Html.ActionLink("Ranked Stats", "RankedStats", "SummonerRankedData", summoner, new {@class = "btn btn-success"})
-                                    @Html.ActionLink("Champion Mastery", "ChampionMastery", "SummonerRankedData", summoner, new { @class = "btn btn-success" })
-                                </div>
-                                <div>
-                                    @Html.ActionLink("Summary", "Summary", "SummonerSummary", summoner, new { @class = "btn btn-success" })
-                                    @Html.ActionLink("Delete Summoner", "DeleteSummoner", "Search", summoner, new {@class = "btn btn-success"})
-                                </div>
-                            </div>
-                        </h2>
-                    </header>
-                </article>
-            </div>
+                    <article>
+                        <header>
+                            <h2>
+                                <img src="@(String.Format("http://ddragon.leagueoflegends.com/cdn/6.5.1/img/profileicon/{0}.png", summoner.ProfileIconID))" alt="image" />
+
+                                <table>
+                                    <tr>
+                                        <td>Name:</td>
+                                        <td>@summoner.SummonerName</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Server: 
+                                        </td>
+                                        <td>
+                                            @summoner.Server.ToUpper()
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Ranked Stats", "RankedStats", "SummonerRankedData", summoner, new { @class = "btn btn-success", @style = "width: 141px" })
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Stats Summary", "Summary", "SummonerSummary", summoner, new { @class = "btn btn-success", @style = "width: 141px" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Summoner Details", "SummonerDetails", "Search", summoner, new { @class = "btn btn-success", @style = "width: 141px" })
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Delete Summoner", "DeleteSummoner", "Search", summoner, new {@class = "btn btn-success", @style = "background-color: crimson"})
+                                        </td>                                    
+                                    </tr>
+                                </table>
+                            </h2>
+                        </header>
+                    </article>
+                </div>
         }
     </div>
 </div>

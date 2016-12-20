@@ -19,7 +19,7 @@ namespace LolSite.Controllers
         {
             {
 
-        bool hasRes = false;
+                bool hasRes = false;
                 HttpClient client = new HttpClient();
 
                 string uri = $"https://{summoner.Server}.api.pvp.net/api/lol/{summoner.Server}/v1.3/stats/by-summoner/{summoner.SummonerID}/summary?season=SEASON2016&api_key=RGAPI-83bc4cd9-c0d4-4fa3-a0a9-775ea5edc1e1";
@@ -49,6 +49,15 @@ namespace LolSite.Controllers
                 }
 
             }
+        }
+
+
+        //
+        // GET AggregatedStats
+        public ActionResult AggregatedStats(SummonerSummary.Aggregatedstats data)
+        {
+            ViewBag.Data = data;
+            return View(data);
         }
     }
 }

@@ -253,6 +253,8 @@
     <Content Include="Views\SummonerRankedData\RankedStats.cshtml" />
     <Content Include="Views\SummonerSummary\Summary.cshtml" />
     <Content Include="Views\SummonerRankedData\NoRankedStats.cshtml" />
+    <Content Include="Views\Search\SummonerDetails.cshtml" />
+    <Content Include="Views\SummonerSummary\AggregatedStats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

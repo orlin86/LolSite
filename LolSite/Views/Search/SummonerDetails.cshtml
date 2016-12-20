@@ -1,0 +1,24 @@
+﻿@using LolSite.Models
+@model LolSite.Models.Summoner
+
+@{
+    ViewBag.Title = "SummonerDetails";
+}
+
+<h2>SummonerDetails</h2>
+
+<div class="container">
+    <div class="well">
+
+        <img src=@ViewBag.ImgSrc alt="image" />
+        @foreach (var stat in ViewBag.Data.GetType().GetProperties())
+        {
+            if (stat.Name == "SummonerName" || stat.Name == "Server" || stat.Name == "SummonerID")
+            {
+                <h3>@stat.Name: @stat.GetValue(ViewBag.Data, null)</h3>
+
+            }
+        }
+    </div>
+</div>
+

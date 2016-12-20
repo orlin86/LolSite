@@ -1,0 +1,18 @@
+﻿@using LolSite.Models
+
+@{
+    ViewBag.Title = "AggregatedStats";
+}
+
+<h2>Detailed Stats</h2>
+
+<table border="1">
+    @foreach (var stat in ViewBag.Data.GetType().GetProperties())
+    {
+        <tr>
+            <td align="center">@stat.Name</td>
+            <td align="center">@stat.GetValue(ViewBag.Data, null)</td>
+        </tr>
+    }
+</table>
+

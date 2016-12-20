@@ -19,6 +19,7 @@ namespace LolSite.Models
         {
             public int id { get; set; }
             public string champName { get; set; }
+            public string url { get; set; }
             public Stats stats { get; set; }
         }
 

@@ -180,7 +180,7 @@ namespace LolSite.Controllers
 
                     using (var database = new SumonnerDbContext())
                     {
-                        bool summExist = database.Summoners.Any(t=>t.SummonerID == sumonID);
+                        bool summExist = database.Summoners.Any(t => t.SummonerID == sumonID);
                         ViewBag.sumEx = summExist;
                     }
 
@@ -204,8 +204,15 @@ namespace LolSite.Controllers
 
         //
         // GET: SearchResult
-        public ActionResult SearchResults(Summoner summoner)
+        public ActionResult SummonerDetails(Summoner summoner)
         {
+            string imgUrl = "http://ddragon.leagueoflegends.com/cdn/6.5.1/img/profileicon/";
+
+            imgUrl += summoner.ProfileIconID.ToString() + ".png";
+            
+
+            ViewBag.ImgSrc = imgUrl;
+            ViewBag.Data = summoner;
             return View(summoner);
         }
 

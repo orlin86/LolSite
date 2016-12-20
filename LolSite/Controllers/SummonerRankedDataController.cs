@@ -54,7 +54,8 @@ namespace LolSite.Controllers
                     {
                         if (champ.id.ToString()==kvp.Key)
                         {
-                            champ.champName = $"http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/{kvp.Value}.png";
+                            champ.champName = kvp.Value;
+                            champ.url = $"http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/{kvp.Value}.png";
                         }
                     }
                 }

@@ -6,34 +6,62 @@
 
 <h2>RankedStats</h2>
 
-<table>
-    <tr>
-        <td>ID</td>
-        @foreach (var stat in ViewBag.Data[0].stats.GetType().GetProperties())
-        {
-            <td>
-                @stat.Name
-            </td>
-        }
+<table border ="1">
+    <tr style="font-size: larger">
+        <td></td>
+        <td>Champion Name</td>
+        <td>Deaths per Session</td>
+        <td>Sessions played</td>
+        <td>Damage taken</td>
+        <td>Quadra kills</td>
+        <td>Triple kills</td>
+        <td>Minion kills</td>
+        <td>Max Champions killed</td>
+        <td>Double kills</td>
+        <td>Physical dmg dealt</td>
+        <td>Total Champion kills</td>
+        <td>Total assists</td>
+        <td>Most Champion kills per session</td>
+        <td>Damage dealt</td>
+        <td>Total first blood</td>
+        <td>Total sessions lost</td>
+        <td>Total sessions won</td>
+        <td>Total magic dmg dealt</td>
+        <td>Total gold earned</td>
+        <td>Penta kills</td>
+        <td>Turrets killed</td>
+        <td>Most spells cast</td>
+        <td>Max num deaths</td>
+        <td>Unreal kills</td>
+        <td>Max crit strike</td>
+        <td>Ranked pre-made games</td>
+        <td>Total neutral minions killed</td>
+        <td>Max killing spree</td>
+        <td>Max time spent living</td>
+        <td>Max time played</td>
+        <td>Bot games played</td>
+        <td>Killing spree</td>
+        <td>Ranked solo games played</td>
+        <td>Total heal</td>
+        <td>Normal games played</td>
     </tr>
     
     @foreach (var champ in ViewBag.Data)
     {
         <tr>
             <td>
-                @if (champ.champName != null) { 
-                <img src="@champ.champName" alt="image"/>
+                @if (champ.url != null) { 
+                <img src="@champ.url" alt="image"/>
                 }
                 else
                 {
                     <img src="http://www.clker.com/cliparts/w/Z/C/s/n/T/total-button-png-md.png" alt="image" style="width: 120px"/>
                 }
             </td>
-
+            <td>@champ.champName</td>
             @foreach (var stat in champ.stats.GetType().GetProperties())
             {
                 <td align="center">@stat.GetValue(champ.stats, null)</td>
-
             }
 
         </tr>
