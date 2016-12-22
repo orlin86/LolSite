@@ -5,7 +5,7 @@
         return epoch.AddMilliseconds(unixTime);
     }
 }
-
+<link href="~/Content/Tables.css" rel="stylesheet" />
 @using System.Web.Mvc.Html
 @using LolSite.Models
 
@@ -15,25 +15,27 @@
 
 <h2>Summoner Summary</h2>
 
-<table border="1">
+<table>
     <tr style="font-size: larger">
-        <td align="center">Summary Type</td>
-        <td align="center">Modify Date</td>
-        <td align="center">Wins</td>
-        <td align="center">Losses</td>
+        <td>Summary Type</td>
+        <td>Modify Date</td>
+        <td>Wins</td>
+        <td>Losses</td>
+        <td>Additional Stats</td>
+
     </tr>
     @foreach (var stat in ViewBag.Data)
     {
         <tr>
-            <td align="center">@stat.playerStatSummaryType</td>
-            <td align="center">@FromUnixTime(stat.modifyDate)</td>
-            <td align="center">@stat.wins</td>
-            <td align="center">@stat.losses</td>
+            <td>@stat.playerStatSummaryType</td>
+            <td>@FromUnixTime(stat.modifyDate)</td>
+            <td>@stat.wins</td>
+            <td>@stat.losses</td>
             <td>
-                @Html.ActionLink("Additional Stats", "AggregatedStats", "SummonerSummary", (SummonerSummary.Aggregatedstats)stat.aggregatedStats, null)
+                @Html.ActionLink("Link", "AggregatedStats", "SummonerSummary", (SummonerSummary.Aggregatedstats)stat.aggregatedStats, null)
             </td>
         </tr>
     }
-    
+
 
 </table>

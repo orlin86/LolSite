@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "AggregatedStats";
 }
+<link href="~/Content/Tables.css" rel="stylesheet" />
 
 <h2>Detailed Stats</h2>
 
@@ -10,9 +11,16 @@
     @foreach (var stat in ViewBag.Data.GetType().GetProperties())
     {
         <tr>
-            <td align="center">@stat.Name</td>
-            <td align="center">@stat.GetValue(ViewBag.Data, null)</td>
+            <td style="text-align: left">@stat.Name: </td>
+            <td>@stat.GetValue(ViewBag.Data, null)</td>
         </tr>
     }
 </table>
+<table style="width: 250px">
+    <tr>
+        <td><a href='javascript:history.go(-1)'>Go Back to Summoner Summary</a></td>
+    </tr>
+</table>
+
+
 

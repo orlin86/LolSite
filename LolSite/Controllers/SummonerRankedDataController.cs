@@ -60,7 +60,7 @@ namespace LolSite.Controllers
                     }
                 }
                 
-                ViewBag.Data = root.champions;
+                ViewBag.Data = root.champions.OrderByDescending(a => a.id);
                 return View(root);
             }
             else

@@ -1,0 +1,12 @@
+﻿body {
+}
+
+table, tr, th, td {
+    text-align: center;
+    padding: 1px;
+    border: 1px solid black;
+}
+
+td:nth-child(even) {
+    background-color: #f2f2f2;
+}
