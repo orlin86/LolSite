@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using LolSite.Models;
 using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json.Linq;
 
 namespace LolSite.Controllers
@@ -180,7 +181,12 @@ namespace LolSite.Controllers
 
                     using (var database = new SumonnerDbContext())
                     {
-                        bool summExist = database.Summoners.Any(t => t.SummonerID == sumonID);
+                        // Get ownerId
+                        var ownerId = database.Users
+                            .Where(u => u.UserName == this.User.Identity.Name)
+                            .First()
+                            .Id;
+                        bool summExist = database.Summoners.Any(t => t.SummonerID == sumonID&&t.OwnerId== ownerId);
                         ViewBag.sumEx = summExist;
                     }
 
