@@ -182,12 +182,16 @@ namespace LolSite.Controllers
                     using (var database = new SumonnerDbContext())
                     {
                         // Get ownerId
-                        var ownerId = database.Users
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            var ownerId = database.Users
                             .Where(u => u.UserName == this.User.Identity.Name)
                             .First()
                             .Id;
-                        bool summExist = database.Summoners.Any(t => t.SummonerID == sumonID&&t.OwnerId== ownerId);
-                        ViewBag.sumEx = summExist;
+                            bool summExist = database.Summoners.Any(t => t.SummonerID == sumonID && t.OwnerId == ownerId);
+                            ViewBag.sumEx = summExist;
+                        }
+                        
                     }
 
 
